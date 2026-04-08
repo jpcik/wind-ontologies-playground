@@ -1,0 +1,390 @@
+{
+  "@context": {
+    "@version": 1.1,
+    
+    "schema": "http://schema.org/",
+    "cf": "http://mmisw.org/ont/cf/parameter/",
+    "dc": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "wra": "https://example.org/wra/vocab#",
+ 	"@mbase": "urn:uuid:",
+    "uuid": "@id",
+    "author": "dc:creator",
+    "organisation": "dc:publisher",
+    "date": { "@id": "dc:created", "@type": "xsd:date" },
+    "version": "schema:version",
+    "license": { "@id": "dc:license", "@type": "@id" },
+    "description": "schema:description",
+
+    "plant_name": "schema:name",
+    "plant_type": "wra:plantType",
+    "notes": "schema:description",
+
+    "name": "schema:name",
+    "latitude_ddeg": { "@id": "schema:latitude", "@type": "xsd:decimal" },
+    "longitude_ddeg": { "@id": "schema:longitude", "@type": "xsd:decimal" },
+
+    "measurement_location": { "@id": "wra:measurementLocation", "@container": "@set" },
+    "measurement_station_type_id": "wra:measurementStationType",
+    "mast_properties": "wra:mastProperties",
+    "mast_geometry_id": "wra:mastGeometry",
+    "mast_oem": "wra:mastManufacturer",
+    "mast_serial_number": "wra:mastSerialNumber",
+    "mast_model": "wra:mastModel",
+    "mast_height_m": "wra:mastHeight",
+    "mast_section_geometry": "wra:mastSectionGeometry",
+    
+    "logger_oem_id": "schema:manufacturer",
+    "logger_model_name": "schema:model",
+    "logger_serial_number": "schema:serialNumber",
+    "logger_name": "schema:name",
+    "logger_firmware_version": "schema:softwareVersion",
+    "logger_id": "schema:identifier",
+    "logger_main_config": { "@id": "ssn:hasSubSystem", "@container": "@set" },
+
+    "date_from": { "@id": "schema:startDate", "@type": "xsd:dateTime" },
+    "date_to": { "@id": "schema:endDate", "@type": "xsd:dateTime" },
+    "update_at": { "@id": "prov:generatedAtTime", "@type": "xsd:dateTime" },
+
+    "measurement_point": { "@id": "wra:measurementPoint", "@container": "@set" },
+    "height_m": "wra:height",
+    "height_reference_id": "wra:heightReference",
+    
+    "logger_measurement_config": "wra:loggerMeasurementConfig",
+    "slope": "wra:slope",
+    "offset": "wra:offset",
+    "sensitivity": "wra:sensitivity",
+    "measurement_units_id": { "@id": "qudt:unit", "@type": "@id" },
+    "connection_channel": "wra:connectionChannel",
+    "logger_stated_boom_orientation_deg": "wra:loggerStatedBoomOrientation",
+    "column_name": "wra:columnName",
+    "statistic_type_id": "wra:statisticType",
+    "is_ignored": "wra:isIgnored",
+
+    "sensor": { "@id": "sosa:hosts", "@container": "@set" },
+    "oem": "schema:manufacturer",
+    "model": "schema:model",
+    "serial_number": "schema:serialNumber",
+    "sensor_type_id": "wra:sensorType",
+    "classification": "wra:classification",
+    "instrument_poi_height_mm": "wra:instrumentPoiHeight",
+    "is_heated": "wra:isHeated",
+    "sensor_body_size_mm": "wra:sensorBodySize",
+
+    "calibration": "wra:calibration",
+    "slope_unit": "wra:slopeUnit",
+    "offset_unit": "wra:offsetUnit",
+    "sensitivity_unit": "wra:sensitivityUnit",
+    "report_file_name": "wra:reportFileName",
+    "report_link": "wra:reportLink",
+    "date_of_calibration": "wra:dateOfCalibration",
+    "revision": "wra:revision",
+    "calibration_organisation": "wra:calibrationOrganisation",
+    "place_of_calibration": "wra:placeOfCalibration",
+    "uncertainty_k_factor": "wra:uncertaintyKFactor",
+    "calibration_uncertainty": "wra:calibrationUncertainty",
+    "reference_bin": "wra:referenceBin",
+    "reference_unit": "wra:referenceUnit",
+    "combined_uncertainty": "wra:combinedUncertainty",
+
+    "mounting_arrangement": "wra:mountingArrangement",
+    "mast_section_geometry_uuid": "wra:mastSectionGeometryUuid",
+    "mounting_type_id": "wra:mountingType",
+    "boom_orientation_deg": "wra:boomOrientation",
+    "vane_dead_band_orientation_deg": "wra:vaneDeadBandOrientation",
+    "orientation_reference_id": "wra:orientationReference",
+    "tilt_angle_deg": "wra:tiltAngle",
+    "boom_oem": "wra:boomManufacturer",
+    "boom_model": "wra:boomModel",
+    "upstand_height_mm": "wra:upstandHeight",
+    "upstand_diameter_mm": "wra:upstandDiameter",
+    "boom_diameter_mm": "wra:boomDiameter",
+    "boom_length_mm": "wra:boomLength",
+    "distance_from_mast_to_sensor_mm": "wra:distanceFromMastToSensor",
+
+    "interference_structures": "wra:interferenceStructures",
+    "structure_type_id": "wra:structureType",
+    "orientation_from_mast_centre_deg": "wra:orientationFromMastCentre",
+    "distance_from_mast_centre_mm": "wra:distanceFromMastCentre",
+    "diameter_of_interference_structure_mm": "wra:diameterOfInterferenceStructure",
+
+    "measurement_type_id": { "@id": "sosa:observedProperty" },
+    
+    "wind_speed": {"@id":"cf:wind_speed"},
+    "wind_direction": "cf:wind_from_direction",
+    "air_temperature": "cf:air_temperature",
+    "water_temperature": "cf:water_temperature",
+    "air_pressure": "cf:air_pressure",
+    "air_density": "cf:air_density",
+    "relative_humidity": "cf:relative_humidity",
+    "resistance": "cf:aerodynamic_resistance",
+    "pressure": "cf:sea_water_pressure",
+    "wave_height": "cf:sea_surface_wave_mean_height",
+    "wave_significant_height": "cf:sea_surface_wave_significant_height",
+    "wave_maximum_height": "cf:sea_surface_wave_maximum_height",
+    "wave_direction": "cf:sea_surface_wave_from_direction",
+    "wave_directional_spread": "cf:sea_surface_wave_directional_spread",
+    "wave_period": "cf:sea_surface_wave_mean_period",
+    "wave_peak_period": "cf:sea_surface_wave_period_at_variance_spectral_density_maximum",
+    "wave_period_first_frequency": "cf:sea_surface_wave_mean_period_from_variance_spectral_density_first_frequency_moment",
+    "wave_period_second_frequency": "cf:sea_surface_wave_mean_period_from_variance_spectral_density_second_frequency_moment",
+    "wave_energy_spectrum": "cf:sea_surface_wave_variance_spectral_density",
+    "wave_energy_spectrum_maximum": "cf:sea_surface_wave_energy_at_variance_spectral_density_maximum",
+    "water_speed": "cf:sea_water_speed",
+    "vertical_water_speed": "cf:upward_sea_water_velocity",
+    "water_direction": "cf:sea_water_from_direction",
+    "orientation": "cf:platform_orientation",
+    "pitch": "cf:platform_pitch",
+    "roll": "cf:platform_roll",
+    "heading": "cf:platform_yaw",
+    "altitude": "cf:altitude",
+    "height": "cf:height",
+    "depth": "cf:depth",
+    "azimuth": "cf:sensor_azimuth_angle",
+    "turbidity": "cf:sea_water_turbidity",
+    "visibility_in_air": "cf:visibility_in_air",
+    "obukhov_length": "cf:atmosphere_obukhov_length",
+    "voltage": "wra:voltage",
+    
+    "m_s": "unit:M-PER-SEC",
+    "deg": { "@id": "unit:DEG", "@type": "@id" }, 
+    "deg_C": { "@id": "unit:DEG_C", "@type": "@id" }, 
+    "%": { "@id": "unit:PERCENT", "@type": "@id" }, 
+    "mbar": { "@id": "unit:MilliBAR", "@type": "@id" }, 
+    "V": { "@id": "unit:V", "@type": "@id" }
+
+  },
+  "@graph":  
+  {
+  "author": "Stephen Holleran",
+  "organisation": "brightwind",
+  "date": "2021-12-23",
+  "version": "1.3.0-2024.03",
+  "license": "https://opensource.org/license/mit/",
+  "plant_name": "A Name of the Wind Farm",
+  "plant_type": "onshore_wind",
+  "measurement_location": [{
+    "uuid": "6858cf5c-24e0-40d4-955b-8aecbccba391",
+    "name": "Test_MM1",
+    "latitude_ddeg": 53.5,
+    "longitude_ddeg": -8,
+    "measurement_station_type_id": "mast",
+    "notes": "I can write anything I want here.",
+    "update_at": "2020-04-18T18:13:00",
+    "mast_properties": {
+      "mast_geometry_id": "lattice_triangle",
+      "mast_oem": "A Mast Manufacturer",
+      "mast_serial_number": "MM01234",
+      "mast_model": "SLX80m",
+      "mast_height_m": 78.5,
+      "date_from": "2020-04-12T12:00:00",
+      "date_to": null,
+      "notes": "I can write anything I want here.",
+      "update_at": "2020-04-18T18:13:00",
+      "mast_section_geometry": [{
+        "uuid": "bf078172-bbb6-48fe-ac1f-c6605dffb1b5",
+        "pole_diameter_mm": null,
+        "mast_section_height_mm": 3000,
+        "lattice_face_width_at_bottom_mm": 500,
+        "lattice_face_width_at_top_mm": 500,
+        "lattice_leg_width_mm": 50,
+        "lattice_leg_is_round_cross_section": true,
+        "lattice_bracing_member_diameter_mm": 12,
+        "lattice_bracing_member_diameter_horizontal_mm": 12,
+        "lattice_bracing_member_diameter_diagonal_mm": 12,
+        "lattice_number_of_diagonal_bracing_members": 2,
+        "lattice_bracing_member_length_diagonal_mm": 625,
+        "number_of_repetitive_patterns_on_face": 4,
+        "lattice_bracing_member_height_mm": 750,
+        "lattice_has_horizontal_member": false,
+        "notes": "I can write anything I want here.",
+        "update_at": "2020-04-18T18:13:00"
+      }]
+    },
+  
+   "measurement_point": [{
+      "name": "Spd_80.1_315",
+      "measurement_type_id": "wind_speed",
+      "height_m": 80.1,
+      "height_reference_id": "ground_level",
+      "notes": "I can write anything I want here.",
+      "update_at": "2020-04-18T18:13:00",
+      "logger_measurement_config": [{
+        "slope": 0.04573,
+        "offset": 0.2419,
+        "sensitivity": null,
+        "measurement_units_id": "m_s",
+        "height_m": 80,
+        "serial_number": "09183000",
+        "connection_channel": "CH1",
+        "logger_stated_boom_orientation_deg": 310,
+        "date_from": "2020-04-12T12:00:00",
+        "date_to": "2020-04-15T00:00:00",
+        "notes": "I can write anything I want here.",
+        "update_at": "2020-04-18T18:13:00",
+        "column_name": [
+          {
+            "column_name": "CH1Avg",
+            "statistic_type_id": "avg",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1SD",
+            "statistic_type_id": "sd",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1Min",
+            "statistic_type_id": "min",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1Max",
+            "statistic_type_id": "max",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1Ti30sec",
+            "statistic_type_id": "ti30sec",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+        }]
+      },{
+        "slope": 0.04573,
+        "offset": 0.2491,
+        "sensitivity": null,
+        "measurement_units_id": "m/s",
+        "height_m": 80,
+        "serial_number": "09183000",
+        "connection_channel": "CH1",
+        "logger_stated_boom_orientation_deg": 310,
+        "date_from": "2020-04-15T00:00:00",
+        "date_to": null,
+        "notes": "I can write anything I want here.",
+        "update_at": "2020-04-18T18:13:00",
+        "column_name": [
+          {
+            "column_name": "CH1Avg",
+            "statistic_type_id": "avg",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1SD",
+            "statistic_type_id": "sd",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1Min",
+            "statistic_type_id": "min",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+          },{
+            "column_name": "CH1Max",
+            "statistic_type_id": "max",
+            "is_ignored": false,
+            "notes": "I can write anything I want here.",
+            "update_at": "2020-04-18T18:13:00"
+        }]
+      }],
+      "sensor": [{
+        "oem": "Thies",
+        "model": "4.3351.10.000",
+        "serial_number": "09183000",
+        "sensor_type_id": "anemometer",
+        "classification": "1.2A",
+        "instrument_poi_height_mm": 250,
+        "is_heated": false,
+        "sensor_body_size_mm": 50,
+        "date_from": "2020-04-12T12:00:00",
+        "date_to": null,
+        "update_at": "2020-04-18T18:13:00",
+        "notes": "First Class Advanced",
+        "calibration": [{
+          "measurement_type_id": "wind_speed",
+          "slope": 0.04573,
+          "slope_unit": "(m/s)/Hz",
+          "offset": 0.2419,
+          "offset_unit": "m/s",
+          "sensitivity": null,
+          "sensitivity_unit": null,
+          "report_file_name": "file name.pdf",
+          "report_link": null,
+          "date_of_calibration": "2019-12-06",
+          "revision": "A",
+          "calibration_organisation": "Deutsche WindGuard",
+          "place_of_calibration": "Windtunnel of Deutsche WindGuard WindTunnel Services GmbH, Varel",
+          "uncertainty_k_factor": 2,
+          "notes": "I can write anything I want here.",
+          "update_at": "2020-04-18T18:13:00",
+          "calibration_uncertainty": [{
+              "reference_bin": 4,
+              "reference_unit": "m_s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 5.93,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 7.93,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 9.92,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 11.9,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 13.88,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 15.88,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 14.88,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 12.88,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 10.91,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 8.91,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 6.92,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+            },{
+              "reference_bin": 4.98,
+              "reference_unit": "m/s",
+              "combined_uncertainty": 0.1
+          }]
+        }]
+      }]
+   }] 
+  }]
+  }
+}
